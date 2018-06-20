@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <select id="findUserInfo" resultType="com.example.demo.entity.User">
+    select * from user where Status = '1' order by CreateTime desc
+  	</select>
+
+    <select id="findUserInfoById" resultType="com.example.demo.entity.User" parameterType="java.lang.String">
+    select * from user where id = #{id,jdbcType=VARCHAR}
+    and Status = '1'
+  	</select>
+  
+  <update id="del" parameterType="java.lang.String">
+  	update user
+  	set Status = '0'
+  	where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateUserInfo" parameterType="com.example.demo.entity.User">
+  	update user set
+  	<if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="userdesc != null" >
+        UserDesc = #{userdesc,jdbcType=VARCHAR},
+    </if>
+    <if test="telephone != null" >
+        TelePhone = #{telephone,jdbcType=VARCHAR},
+    </if>
+    <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <insert id="addUser" parameterType="com.example.demo.entity.User">
+  	insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        PassWord,
+      </if>
+      <if test="userdesc != null" >
+        UserDesc,
+      </if>
+      <if test="telephone != null" >
+        TelePhone,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="reverse1 != null" >
+        Reverse1,
+      </if>
+      <if test="reverse2 != null" >
+        Reverse2,
+      </if>
+      <if test="reverse3 != null" >
+        Reverse3,
+      </if>
+      <if test="reverse3 != null" >
+        Reverse4,
+      </if>
+      <if test="reverse3 != null" >
+        Reverse5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userdesc != null" >
+        #{userdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse1 != null" >
+        #{reverse1,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse2 != null" >
+        #{reverse2,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse3 != null" >
+        #{reverse3,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse4 != null" >
+        #{reverse4,jdbcType=VARCHAR},
+      </if>
+      <if test="reverse5 != null" >
+        #{reverse5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
