@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     	User user = new User();
     	user.setId("123");
     	log.info("查询所有并保存缓存");
+    	log.info("查询所有并保存缓存");
     	List<User> findUserInfo = userMapper.findUserInfo();
     	System.out.println(findUserInfo.toString());
         return findUserInfo;
